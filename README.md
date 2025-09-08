@@ -3,8 +3,8 @@ This project is a powerful tool for analyzing video data from YouTube, focused o
 
 # 📝 Scripts and Functionality Overview
 1. [Fetching Data from YouTube](#Fetching-Data-from-YouTube)
-2. [Data Processing and Sentiment Analysis](Data-Processing-and-Sentiment-Analysis)
-3. [Saving Data to PostgreSQL](Saving-Data-to-PostgreSQL)
+2. [Data Processing and Sentiment Analysis](#Data-Processing-and-Sentiment-Analysis)
+3. [Saving Data to PostgreSQL](#Saving-Data-to-PostgreSQL)
 4. [Example Analysis and Insights]
 5. [Summary]
 
