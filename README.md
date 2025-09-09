@@ -214,17 +214,17 @@ def check_if_video_exists(cursor,index):
     cursor.execute(query, (index,))
     return cursor.fetchone() is not None
 
-def update_video_data(cursor, index,viewCount,likeCount,commentCount, comments, lang, translated_comments, sentiment, sentiment_summary):
+def update_video_data(cursor, index, comments, lang, translated_comments, sentiment, sentiment_summary):
     query = (f""" UPDATE {game_name_db}_data 
                   SET comments = %s, lang = %s, translated_comments = %s, sentiment = %s, sentiment_summary = %s, refresh_date = CURRENT_DATE
                   WHERE index = %s""")
-    cursor.execute(query, (viewCount,likeCount,commentCount,comments, lang, translated_comments, sentiment, sentiment_summary, index))
-
+    cursor.execute(query, (comments, lang, translated_comments, sentiment, sentiment_summary, index))
 
 def insert_video_data(cursor, index, title, publishedAt, channelName, duration, viewCount, likeCount, commentCount, comments, lang, translated_comments, sentiment, sentiment_summary):
-    query = (f""" INSERT INTO {game_name_db}_data (index, title, publishedAt, channelName, duration, viewCount, likeCount, commentCount, comments, lang, translated_comments, sentiment, sentiment_summary)
-                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""")
+    query = (f""" INSERT INTO {game_name_db}_data (index, title, publishedAt, channelName, duration, viewCount, likeCount, commentCount, comments, lang, translated_comments, sentiment, sentiment_summary, refresh_date)
+                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_DATE)""")
     cursor.execute(query, (index, title, publishedAt, channelName, duration, viewCount, likeCount, commentCount, comments, lang, translated_comments, sentiment, sentiment_summary))
+
 ```
 
 
