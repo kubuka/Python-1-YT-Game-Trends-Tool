@@ -14,7 +14,7 @@ The heart of the project is the `fetch_yt_data()` function, which communicates w
 ## Key Steps
 - ***Search***: The script searches for videos on YouTube based on the game's name, sorting the results by date to get the most recent content.
 
-- ***Filtering***: It fetches videos from the last 5 days, ensuring the analysis is based on current data.
+- ***Filtering***: It fetches videos from the selected date.
 
 - ***Categories***: The search is limited to two video duration categories: medium (4-20 minutes) and long (over 20 minutes), which allows for a varied analysis of content.
 
