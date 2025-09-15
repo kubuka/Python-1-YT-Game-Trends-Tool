@@ -5,8 +5,8 @@ This project is a powerful tool for analyzing video data from YouTube, focused o
 1. [Fetching Data from YouTube](#Fetching-Data-from-YouTube)
 2. [Data Processing and Sentiment Analysis](#Data-Processing-and-Sentiment-Analysis)
 3. [Saving Data to PostgreSQL](#Saving-Data-to-PostgreSQL)
-4. [Example Analysis and Insights]
-5. [Summary]
+4. [Example Analysis and Insights](#Example-Analysis-and-Insights)
+5. [Summary](#Summary)
 
 # Fetching Data from YouTube
 The heart of the project is the `fetch_yt_data()` function, which communicates with the YouTube Data API v3. Its purpose is to collect a comprehensive set of information about videos related to a given game.
@@ -225,8 +225,43 @@ def insert_video_data(cursor, index, title, publishedAt, channelName, duration, 
                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_DATE)""")
     cursor.execute(query, (index, title, publishedAt, channelName, duration, viewCount, likeCount, commentCount, comments, lang, translated_comments, sentiment, sentiment_summary))
 
-
-
 ```
 
+# Example Analysis and Insights
+Once the data is saved, your database transforms into a powerful information hub, which you can explore using the `analysis.py` script. This script automatically connects to the database, retrieves the processed data, and generates four key visualizations, enabling in-depth analysis of trends and public opinion.
+
+## Functionality
+- ***View and Like Count Trend over Time***: This shows how video popularity changes over the defined time frame.
+- ***Sentiment Distribution***: A pie chart showing the breakdown of comments into positive, negative, and neutral categories.
+- ***Like-to-View Correlation***: This scatter plot analyzes whether videos with a high number of views also have a high number of likes.
+- ***Video Duration Distribution***: This bar chart shows the percentage of videos in the dataset that fall into *short* (<5 minutes), *medium* (5-20 minutes), and *long* (>20 minutes) categories
+
+<img width="1996" height="1592" alt="Zrzut ekranu 2025-09-15 o 19 55 03" src="https://github.com/user-attachments/assets/77694730-e0cf-41f3-8ead-60d2c13ec7fe" />
+
+## 💡 Insights from the Visualizations
+By looking at the visualizations, we can draw key conclusions:
+
+- Popularity Dynamics: Prominent peaks on the trend graph can indicate new releases or significant events that generate high activity. (In this case, that specific spike in views was an announcement for the new expansion)
+
+- Overall Community Mood: The dominance of a positive sentiment in the pie chart suggests that the game has a loyal and satisfied fan base.
+
+- Content Quality: A strong correlation on the scatter plot between likes and views is a sign of high-quality videos that are not only watched but also positively rated.
+
+- Preferred Formats: The bar chart showing video duration can reveal whether the community prefers short, "quick" clips or longer, more detailed reviews and gameplay sessions.
+
+# Summary
+This project is a robust tool for analyzing video game content on YouTube. It uses the YouTube Data API to fetch video statistics and comments, then employs NLP models from the Hugging Face library for language detection, translation, and sentiment analysis. The processed data is stored in a PostgreSQL database. To provide actionable insights, the system includes a dedicated `analysis.py` script that generates key visualizations, helping to understand community trends and public opinion with ease.
+
+## What I Learned 
+Developing this project provided a fantastic opportunity to sharpen my skills in several key areas:
+
+- ***API Integration***: I gained hands-on experience in building complex, batched requests to efficiently handle large amounts of data from a public API.
+
+- ***Practical NLP Implementation***: I learned how to use state-of-the-art NLP models for real-world tasks like cross-lingual sentiment analysis, which required handling data normalization, language detection, and translation pipelines.
+
+- ***Database Management***: I developed a robust system for storing and managing data in a PostgreSQL database, including dynamic table creation and logic for updating existing records versus inserting new ones.
+
+- ***Python Data Visualization***: I learned to transform raw, processed data into a compelling visual story using Matplotlib and Seaborn, creating charts that clearly communicate key insights and trends.
+
+  
 
